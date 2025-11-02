@@ -15,7 +15,7 @@ body {
 
 /* The Card itself */
 .card {
-    width: 270px;
+    width: 250px;
     height: 400px;
     position: relative;
     transform-style: preserve-3d; /* Allows 3D positioning of children */
@@ -133,4 +133,5 @@ body {
 @keyframes fall {
     0% { transform: translateY(-500px) rotateZ(0deg); opacity: 1; }
     100% { transform: translateY(500px) rotateZ(720deg); opacity: 0; }
+
 }
