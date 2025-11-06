@@ -1,0 +1,136 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f7f7f7;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Card Container for centering */
+.card-container {
+    perspective: 1000px; /* Establishes a 3D perspective for the flip effect */
+}
+
+/* The Card itself */
+.card {
+    width: 250px;
+    height: 400px;
+    position: relative;
+    transform-style: preserve-3d; /* Allows 3D positioning of children */
+    transition: transform 1s; /* Smooth transition for the flip */
+    cursor: pointer;
+}
+
+/* The Flip Effect */
+.card-container:hover .card {
+    transform: rotateY(180deg);
+}
+
+/* Common styling for front and back faces */
+.card-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hides the back of the element when facing the user */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+    box-shadow: 0 10px 20px rgba(201, 193, 193, 0.1);
+    text-align: center;
+}
+
+/* Card Front Styling */
+.card-front {
+    background-color: #ff69b4; /* Pink */
+    color: white;
+    border: 5px solid #ff1493; /* Deep Pink border */
+    z-index: 2;
+}
+
+.card-front h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    animation: pulse 2s;
+}
+
+/* Card Back Styling */
+.card-back {
+    background-color: #fffacd; /* Light Yellow */
+    color: #333;
+    transform: rotateY(180deg); /* Flips the back face initially */
+    border: 5px solid #ffd700; /* Gold border */
+    position: relative; /* For confetti positioning */
+    overflow: hidden; /* Keeps confetti inside */
+}
+
+.card-back h2 {
+    color: #ff69b4;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.card-back p {
+    font-size: 1.3em;
+    line-height: 1.5;
+}
+
+/* --- Animation for Front Card H1 --- */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* --- Confetti Animation --- */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff0000; /* Default color */
+    border-radius: 50%;
+    opacity: 0;
+    animation: fall 2s infinite;
+}
+
+/* Assign unique starting positions and colors to confetti pieces */
+.card-back .confetti:nth-child(1) {
+    left: 15%; top: -10%; background-color: #ff69b4;
+    animation-delay: 2s;
+}
+.card-back .confetti:nth-child(2) {
+    left: 40%; top: -20%; background-color: #00ffff;
+    animation-delay: 2s;
+}
+.card-back .confetti:nth-child(3) {
+    left: 65%; top: -5%; background-color: #ffcc00;
+    animation-delay: 2s;
+}
+.card-back .confetti:nth-child(4) {
+    left: 5%; top: -30%; background-color: #00ff00;
+    animation-delay: 3s;
+}
+.card-back .confetti:nth-child(5) {
+    left: 80%; top: -15%; background-color: #9932cc;
+    animation-delay: 4s;
+}
+.card-back .confetti:nth-child(6) {
+    left: 95%; top: -25%; background-color: #ffa07a;
+    animation-delay: 5s;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-500px) rotateZ(0deg); opacity: 1; }
+    100% { transform: translateY(500px) rotateZ(720deg); opacity: 0; }
+}
